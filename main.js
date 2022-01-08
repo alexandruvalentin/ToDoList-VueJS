@@ -29,7 +29,18 @@ app.component("to-do", {
             type: Number,
             required: true
         }
-    }
+    },
+    data() {
+        return {
+            error: null,
+            newTask: null
+        }
+    },
+    template: `
+        <div class="container my-2">
+            <p><strong>Remaining tasks: {{ remaining }}</strong></p>
+        </div>
+    `
 })
 
 const mountedApp = app.mount("#app");
