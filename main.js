@@ -36,10 +36,43 @@ app.component("to-do", {
             newTask: null
         }
     },
+    methods: {
+        submitTask() {
+            if(this.newTask) {
+                this.$emit("add-task", this.newTask);
+                this.newTask = null;
+                if (this.error) {
+                    this.error = null;
+                }
+            } else {
+                this.error = "The input field cannot be empty!";
+            }
+        },
+        removeTask(task) {
+            this.$emit("remove-task", task);
+        }
+    },
     template: `
         <div class="container my-2">
             <p><strong>Remaining tasks: {{ remaining }}</strong></p>
+            <input type="text"
+                   v-model="newTask"
+                   class="form-control"
+                   placeholder="What do you have to do?"
+                   @keyup.enter="submitTask">
+
+            <br>
+
+            <div v-for="task in tasks">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ task }}
+                    <button @click="removeTask(task)" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         </div>
+
     `
 })
 
