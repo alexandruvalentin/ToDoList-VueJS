@@ -71,6 +71,9 @@ app.component("to-do", {
                     </button>
                 </div>
             </div>
+            
+            <p v-if="error"> {{ error }}</p>
+            <p v-if="remaining === 0">To add a new task, add input and press Enter!</p>
         </div>
 
     `
