@@ -19,4 +19,17 @@ const app = Vue.createApp({
     }
 })
 
+app.component("to-do", {
+    props: {
+        tasks: {
+            type: Array,
+            required: true
+        },
+        remaining: {
+            type: Number,
+            required: true
+        }
+    }
+})
+
 const mountedApp = app.mount("#app");
